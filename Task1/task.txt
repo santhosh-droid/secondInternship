@@ -1,0 +1,12 @@
+⿤  For Those Choosing Full Stack Development
+
+Your first task is to create a  basic Contact Form. The design and  development will depend on your creativity and productivity 🎨💻.
+
+Implement:
+Front-End:
+    Form: Build a simple contact form with fields for Name, Email, and Message.
+    Submission: Implement a button to submit the form.
+Back-End:
+    API: Create an API endpoint to handle form submissions and save the data.
+
+Note: It fully depends on your skills and how you can elevate it to an advanced-level.
