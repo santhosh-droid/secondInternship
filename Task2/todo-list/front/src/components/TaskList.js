@@ -12,9 +12,13 @@ const TaskList = () => {
   // Fetch tasks from the backend when the component mounts
   useEffect(() => {
     const fetchTasks = async () => {
-      const response = await fetch('/tasks'); // Correct API endpoint
-      const data = await response.json();
-      setTasks(data);
+      try {
+        const response = await fetch('http://localhost:5000/tasks'); // Correct API endpoint
+        const data = await response.json();
+        setTasks(data);
+      } catch (error) {
+        console.error('Error fetching tasks:', error);
+      }
     };
     fetchTasks();
   }, []);
@@ -40,7 +44,7 @@ const TaskList = () => {
   
       if (editingTaskId) {
         // Update the existing task
-        response = await fetch(`/tasks/${editingTaskId}`, {
+        response = await fetch(`http://localhost:5000/tasks/${editingTaskId}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -52,7 +56,7 @@ const TaskList = () => {
         setModalMessage('Task updated successfully!');
       } else {
         // Add new task
-        response = await fetch('/tasks', {
+        response = await fetch('http://localhost:5000/tasks', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -65,7 +69,7 @@ const TaskList = () => {
       }
   
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error adding task:', error);
       setModalMessage('Error adding task!');
     }
   
@@ -77,7 +81,7 @@ const TaskList = () => {
   
   const deleteTask = async (id) => {
     try {
-      await fetch(`/tasks/${id}`, {
+      await fetch(`http://localhost:5000/tasks/${id}`, {
         method: 'DELETE',
       });
       const updatedTasks = tasks.filter(task => task._id !== id); // Use MongoDB's _id

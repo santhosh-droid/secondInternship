@@ -5,7 +5,7 @@ const ObjectId = require('mongodb').ObjectId;
 const router = express.Router();
 
 // Create a new task
-router.post('/tasks', async (req, res) => {
+router.post('/', async (req, res) => {
   const { name, description } = req.body;
   const db = getDB();
 
@@ -20,7 +20,7 @@ router.post('/tasks', async (req, res) => {
 });
 
 // Get all tasks
-router.get('/tasks', async (req, res) => {
+router.get('/', async (req, res) => {
   const db = getDB();
 
   try {
@@ -34,7 +34,7 @@ router.get('/tasks', async (req, res) => {
 });
 
 // Update a task
-router.put('/tasks/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
   const { id } = req.params;
   const { name, description } = req.body;
   const db = getDB();
@@ -53,7 +53,7 @@ router.put('/tasks/:id', async (req, res) => {
 });
 
 // Delete a task
-router.delete('/tasks/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
   const { id } = req.params;
   const db = getDB();
 
